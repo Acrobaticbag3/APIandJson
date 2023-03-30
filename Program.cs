@@ -1,16 +1,19 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 
-var client = new RestClient("https://api.nobelprize.org/2.1/laureates");
-            var request = new RestRequest("/", Method.Get);
-            RestResponse response = client.Execute(request);
-            String content = response.Content;
+    var client = new RestClient("https://api.nobelprize.org/2.1/laureates");
+    var request = new RestRequest("/", Method.Get);
+    RestResponse response = client.Execute(request);
+    String content = response.Content;
 
-Root menu = JsonConvert.DeserializeObject<Root>(content); // Byt ut till er eget huvudobjekt
+    Root menu = JsonConvert.DeserializeObject<Root>(content); // Byt ut till er eget huvudobjekt
 
-for (int i = 0; i < 25; i++) {
-    Console.WriteLine(i+1+ ". " + menu.laureates[i].fullName.en);
-}
+    
+
+    for (int i = 0; i < 25; i++) {
+        Console.WriteLine(i+1+ ". " + menu.laureates[i].fullName.en);
+    }
+
 
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Affiliation {
@@ -212,4 +215,3 @@ for (int i = 0; i < 25; i++) {
         public string next { get; set; }
         public string last { get; set; }
     }
-
